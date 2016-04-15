@@ -102,9 +102,8 @@ public class LoginActivity extends AppCompatActivity {
 
         private boolean validityCheck(String email, String password) {
 
-
             // Check for a valid password, if the user entered one.
-            if ((TextUtils.isEmpty(password)) && (isPasswordValid(password))) {
+            if ((TextUtils.isEmpty(password)) || !(isPasswordValid(password))) {
                 mPasswordView.setError(getString(R.string.error_invalid_password));
                 focusView = mPasswordView;
                 return false;
@@ -116,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                 focusView = mEmailView;
                 return false;
 
-            } else if (!isEmailValid(email)) {
+            } else if (isEmailValid(email)) {
                 mEmailView.setError(getString(R.string.error_invalid_email));
                 focusView = mEmailView;
                 return false;
