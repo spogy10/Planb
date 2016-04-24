@@ -14,4 +14,5 @@
     <string name="old_password_hint">enter old password</string>
     <string name="new_password_hint">enter new password</string>
     <string name="new_password2_hint">enter  new password again</string>
+    <string name="title_activity_incorrect_password">IncorrectPassword</string>
 </resources>

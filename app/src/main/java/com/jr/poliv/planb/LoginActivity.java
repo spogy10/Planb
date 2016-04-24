@@ -3,6 +3,7 @@ package com.jr.poliv.planb;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -40,19 +41,25 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity extends AppCompatActivity {
 
     public String mEmail;
-    private String mPassword = "";
-    View focusView = null;
+    public String mPassword = "polivers";
+    public View focusView = null;
+    public int numberOfPasswordAttemps;
+    Intent intent;
 
-
+    public StaticMethods methods = new StaticMethods();
     EditText mEmailView;
     EditText mPasswordView;
+    TextView numberOfAttemptsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        numberOfPasswordAttemps = 0;
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.email);
+        numberOfAttemptsTextView = (TextView) findViewById(R.id.number_of_attempts_text_view);
+        assert numberOfAttemptsTextView != null;
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -72,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                attemptLogin((mEmailView.getText().toString()), (mPasswordView.getText().toString()));
+
             }
         });
 
@@ -80,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
 
             private boolean attemptLogin(String email, String password) {
 
-                if (validityCheck(email, password))
+                if (!(validityCheck(email, password)))
                 {
                     focusView.requestFocus();
                     return false;
@@ -88,8 +96,15 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(password.equals(mPassword)){
                     mEmail = email;
+                    //TODO:add code to change to next activity here and send email with intent
                     return true;
                 }
+                numberOfPasswordAttemps++;
+                if (numberOfPasswordAttemps >= 10){
+                    intent = new Intent(LoginActivity.this, IncorrectPassword.class);
+                    startActivity(intent);
+                }
+                numberOfAttemptsTextView.setText(String.valueOf(10-numberOfPasswordAttemps));
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
                 return false;
@@ -103,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
         private boolean validityCheck(String email, String password) {
 
             // Check for a valid password, if the user entered one.
-            if ((TextUtils.isEmpty(password)) || !(isPasswordValid(password))) {
+            if ((TextUtils.isEmpty(password)) || !(methods.isPasswordValid(password))) {
                 mPasswordView.setError(getString(R.string.error_invalid_password));
                 focusView = mPasswordView;
                 return false;
@@ -115,24 +130,13 @@ public class LoginActivity extends AppCompatActivity {
                 focusView = mEmailView;
                 return false;
 
-            } else if (isEmailValid(email)) {
+            } else if (!(methods.isEmailValid(email))) {
                 mEmailView.setError(getString(R.string.error_invalid_email));
                 focusView = mEmailView;
                 return false;
             }
             return true;
         }
-
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-
-        return (email.contains("@") && email.contains("."));
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
-    }
 
 
 }

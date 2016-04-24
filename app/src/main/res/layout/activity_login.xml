@@ -64,6 +64,16 @@
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="10"
+                android:id="@+id/number_of_attempts_text_view"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:textStyle="bold" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
