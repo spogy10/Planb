@@ -8,7 +8,7 @@ public class StaticMethods {
     public static boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
 
-        return (email.contains("@") && email.contains("."));
+        return (email.contains("@") && email.contains(".") && (email.length() > 4));
     }
 
 

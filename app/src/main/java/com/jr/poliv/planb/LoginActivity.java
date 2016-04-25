@@ -40,13 +40,12 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class LoginActivity extends AppCompatActivity {
 
-    public String mEmail;
-    public String mPassword = "polivers";
-    public View focusView = null;
+    String mEmail;
+    String mPassword = "polivers";
+    View focusView = null;
     public int numberOfPasswordAttemps;
     Intent intent;
 
-    public StaticMethods methods = new StaticMethods();
     EditText mEmailView;
     EditText mPasswordView;
     TextView numberOfAttemptsTextView;
@@ -97,6 +96,9 @@ public class LoginActivity extends AppCompatActivity {
                 if(password.equals(mPassword)){
                     mEmail = email;
                     //TODO:add code to change to next activity here and send email with intent
+                    intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("mEmail", mEmail);
+                    startActivity(intent);
                     return true;
                 }
                 numberOfPasswordAttemps++;
@@ -118,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
         private boolean validityCheck(String email, String password) {
 
             // Check for a valid password, if the user entered one.
-            if ((TextUtils.isEmpty(password)) || !(methods.isPasswordValid(password))) {
+            if ((TextUtils.isEmpty(password)) || !(StaticMethods.isPasswordValid(password))) {
                 mPasswordView.setError(getString(R.string.error_invalid_password));
                 focusView = mPasswordView;
                 return false;
@@ -130,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                 focusView = mEmailView;
                 return false;
 
-            } else if (!(methods.isEmailValid(email))) {
+            } else if (!(StaticMethods.isEmailValid(email))) {
                 mEmailView.setError(getString(R.string.error_invalid_email));
                 focusView = mEmailView;
                 return false;
