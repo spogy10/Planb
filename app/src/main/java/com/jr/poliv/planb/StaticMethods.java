@@ -1,9 +1,15 @@
 package com.jr.poliv.planb;
 
+import android.content.Context;
+import android.content.res.Resources;
+
 /**
  * Created by poliv on 4/23/2016.
  */
-public class StaticMethods {
+public abstract class StaticMethods {
+
+
+    public static String defaultPassword = "polivers";
 
     public static boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
@@ -16,4 +22,6 @@ public class StaticMethods {
         //TODO: Replace this with your own logic
         return password.length() > 4;
     }
+
+
 }

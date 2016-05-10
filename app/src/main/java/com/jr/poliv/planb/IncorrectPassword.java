@@ -50,12 +50,12 @@ public class IncorrectPassword extends AppCompatActivity {
 
         try {
             SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(number, null, "The password is polivers", null, null);
+            smsManager.sendTextMessage(number, null, "The password is " + StaticMethods.defaultPassword, null, null);
             Toast.makeText(getApplicationContext(), "SMS sent.", Toast.LENGTH_LONG).show();
         }
 
         catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "SMS faild, please try again.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "SMS failed, please try again.", Toast.LENGTH_LONG).show();
         }
 
 

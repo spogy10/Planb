@@ -10,10 +10,19 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
+    <string name="change_password">Change Password</string>
+
+
+    <string name="default_password">polivers</string>
+
 
     <string name="old_password_hint">enter old password</string>
     <string name="new_password_hint">enter new password</string>
     <string name="new_password2_hint">enter  new password again</string>
     <string name="title_activity_incorrect_password">IncorrectPassword</string>
     <string name="title_activity_main">MainActivity</string>
+
+    <string name="pasword_file_name">Secret File SSSHHHHHHH</string>
+    <string name="password">UNIMPORTANT RANDOM GROUP OF CHARACTERS</string>
+
 </resources>

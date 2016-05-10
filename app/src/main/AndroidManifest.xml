@@ -19,7 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChangePassword" />
+        <activity android:name=".ChangePassword"
+            android:parentActivityName=".MainActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:label="@string/change_password"
+            android:value="com.jr.poliv.planb.MainActivity" />
+        </activity>
+
         <activity
             android:name=".IncorrectPassword"
             android:label="@string/title_activity_incorrect_password"

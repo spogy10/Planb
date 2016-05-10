@@ -3,7 +3,9 @@ package com.jr.poliv.planb;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -41,10 +43,12 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity extends AppCompatActivity {
 
     String mEmail;
-    String mPassword = "polivers";
+    String mPassword;
     View focusView = null;
     public int numberOfPasswordAttemps;
     Intent intent;
+
+    SharedPreferences file;
 
     EditText mEmailView;
     EditText mPasswordView;
@@ -54,6 +58,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        file = this.getSharedPreferences(getString(R.string.pasword_file_name), Context.MODE_PRIVATE);
+        mPassword = initialiseCurrentPassword();
+
         numberOfPasswordAttemps = 0;
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.email);
@@ -83,6 +90,16 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+    }
+
+
+
+    String initialiseCurrentPassword(){
+
+        if(!file.contains(getString(R.string.password)))
+            return StaticMethods.defaultPassword;
+        else
+            return file.getString(getString(R.string.password), StaticMethods.defaultPassword);
     }
 
             private boolean attemptLogin(String email, String password) {
