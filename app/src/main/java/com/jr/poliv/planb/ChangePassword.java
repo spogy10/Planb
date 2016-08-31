@@ -171,29 +171,31 @@ public class ChangePassword extends AppCompatActivity {
     }
 
 
-    public class ConfirmationDialog extends DialogFragment{
+//    public static class ConfirmationDialog extends DialogFragment{
+//
+//
+//
+//        @Override
+//        public Dialog onCreateDialog(Bundle savedInstanceState){
+//
+//            Bundle args = getArguments();
+//            String message = args.getString("message", "");
+//
+//            return new AlertDialog.Builder(getActivity())
+//                    .setTitle("Password Successfully Changed")
+//                    .setMessage(message)
+//                    .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            previousActivity();
+//                        }
+//                    })
+//                    .create();
+//
+//        }
+//    }
 
 
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState){
-
-            Bundle args = getArguments();
-            String message = args.getString("message", "");
-
-            return new AlertDialog.Builder(getActivity())
-                    .setTitle("Password Successfully Changed")
-                    .setMessage(message)
-                    .setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            previousActivity();
-                        }
-                    })
-                    .create();
-
-        }
-    }
 
 
 }
